@@ -25,7 +25,7 @@ Begin VB.Form Form1
       Top             =   1800
       Width           =   855
    End
-   Begin VB.CommandButton Command1 
+   Begin VB.CommandButton BtnTravHeapList 
       Caption         =   "Trav HeapList"
       Height          =   375
       Left            =   1560
@@ -143,7 +143,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
-Private m_Snapshot As Snapshot
+Private m_Snapshot    As Snapshot
 Private m_CurProcess  As ProcessEntry
 Private m_CurHeapList As HeapList
 
@@ -155,13 +155,13 @@ Private Sub Check1_Click()
     Timer1.Enabled = Check1.Value = vbChecked
 End Sub
 
-Private Sub Command1_Click()
+Private Sub BtnTravHeapList_Click()
     Check1.Value = vbUnchecked
     Dim mp As MousePointerConstants: mp = Screen.MousePointer
     Screen.MousePointer = MousePointerConstants.vbHourglass
     'Timer1.Enabled = False
     Me.LstProcesses.Visible = False
-    Call MSnapShot.TraverseHeapList(Me.LstProcesses, Command1)
+    Call MSnapShot.TraverseHeapList(Me.LstProcesses, BtnTravHeapList)
     Me.LstProcesses.Visible = True
     Me.LstProcesses.ZOrder 0
     Screen.MousePointer = mp
